@@ -1,0 +1,28 @@
+const express = require('express')
+const mongoose  = require('mongoose')
+const cors = require('cors')
+const etudiant = require('./Api/EtudiantApi')
+const prof = require('./Api/ProfApi')
+const admin = require('./Api/AdminApi')
+const parent = require('./Api/ParentApi')
+const user = require('./Api/UsersApi')
+const auth = require('./middleware/Auth')
+const multer = require('./middleware/multer')
+const doc = require('./Api/DocumentApi')
+const app = express()
+
+app.use(cors())
+app.use(express.json())
+app.listen(4000,()=> console.log('serveur en cours d\'execution ...'))
+mongoose.connect('mongodb://127.0.0.1:27017/Projet')
+var conn = mongoose.connection
+conn.on('connected',()=> console.log('serveur en cours d\'éxécution'))
+conn.on('disconnected',()=> console.log('serveur déconnecté'))
+conn.on('error',()=> console.error.bind('erreur de connexion'))
+/* app.use('/Etudiant', etudiant)
+app.use('/Prof', multer, prof)
+app.use('/Admin', admin)
+app.use('/Parent', parent) */
+app.use('/User', user)
+app.use('/Document', doc)
+module.exports = conn
