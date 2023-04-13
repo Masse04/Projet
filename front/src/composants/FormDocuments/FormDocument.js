@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
-import { Document } from "../../Class/Class";
 import {useDispatch} from 'react-redux'
-import { CreateDocument } from "../../Redux/Reducer/DocumentReducer";
+import { createDocument } from "../../Redux/Reducer/DocumentReducer";
 
 const FormDocument = () => {
     const [document,setDocument] = useState()
@@ -17,13 +16,8 @@ const FormDocument = () => {
         if (!formRef){
             return
         }
-        let result = dispatch(CreateDocument(new FormData(formRef.current)))
-        console.log(document)
+        dispatch(createDocument(new FormData(formRef.current)))
     }
-const Redirect = async() => {
-    let result = await dispatch(CreateDocument(document))
-    console.log(result)
-}
     return (
         <div className="formDocument">
             <form ref={formRef} onSubmit={onSubmit}>
@@ -40,11 +34,11 @@ const Redirect = async() => {
                     <input type="text" className="form-control" name="classe" id="floatingInputGroup1" required onChange={onChange}/>
                 </div>
                 <div className="form-floating">
-                    <input type="file" className="form-control" id="floatingInputGroup" name="document" required  /* onChange={(e)=> {setDocument({...document,document: e.target.files[0].name})}} *//>
+                    <input type="file" className="form-control" id="floatingInputGroup" name="document" required />
                     <label>Fichier</label>
                 </div>
                 <div className="col-12">
-                    <button type="submit" className="btn btn-primary"  /* onClick={Redirect} */ >LogIn</button>
+                    <button type="submit" className="btn btn-primary" >LogIn</button>
                 </div>
             </form>
         </div>

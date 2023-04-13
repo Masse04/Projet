@@ -1,11 +1,12 @@
 const {Router} = require('express')
-const { CreateDocument } = require('../Controllers/DocumentCtrl')
+const { createDocument, getDocument } = require('../Controllers/DocumentCtrl')
 const multer = require('../middleware/multer')
-const multeressai = require('../middleware/multeressai')
+const auth = require('../middleware/Auth')
 const doc = Router()
 
 
 
-doc.post('/upload', multer , CreateDocument)
+doc.post('/upload', auth, multer , createDocument)
+doc.get('/afficherDocs', auth, getDocument)
 
 module.exports = doc

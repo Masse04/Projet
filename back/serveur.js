@@ -10,6 +10,7 @@ const auth = require('./middleware/Auth')
 const multer = require('./middleware/multer')
 const doc = require('./Api/DocumentApi')
 const app = express()
+const path = require('path')
 
 app.use(cors())
 app.use(express.json())
@@ -25,4 +26,5 @@ app.use('/Admin', admin)
 app.use('/Parent', parent) */
 app.use('/User', user)
 app.use('/Document', doc)
+//app.use('/Images', express.static(path.join(__dirname, 'Images')));
 module.exports = conn
