@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 import {useDispatch} from 'react-redux'
 import { createDocument } from "../../Redux/Reducer/DocumentReducer";
+import { useNavigate } from "react-router-dom";
 
 const FormDocument = () => {
     const [document,setDocument] = useState()
+    const navigate = useNavigate()
     const dispatch = useDispatch() ;
     const formRef = useRef(null)
     const onChange = (e) => {
@@ -11,12 +13,16 @@ const FormDocument = () => {
         [e.target.name] : e.target.value
         })
     }
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault()
         if (!formRef){
             return
         }
-        dispatch(createDocument(new FormData(formRef.current)))
+        const result = await dispatch(createDocument(new FormData(formRef.current)))
+        const nav = typeof result.payload.message
+        if (nav === 'string'){
+            navigate('/Prof/Cours')
+        }
     }
     return (
         <div className="formDocument">

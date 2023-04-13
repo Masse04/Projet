@@ -9,18 +9,28 @@ const Cours = () => {
   useEffect(()=> {
     dispatch(getDocument())
   },[dispatch])
-  const document = useSelector(state => state.Document.document)
-  console.log(document)
+  const documents = useSelector(state => state.Document.document).documents
+  console.log(documents)
   const Redirect = () => {
     navigate('/Document/upload')
+  }
+  const affichage = (e) => {
+    if (e.genre === 'image') 
+      return (<img src={e.documentUrl} alt="tof"/>)
+    else if (e.genre === 'video')
+      return (<video src={e.documentUrl} controls/>)
+    else 
+      return (<embed src={e.documentUrl}/>)
   }
   return (
     <div className="Cours">
       {
-        document.documents.map(el => (
+        documents?.map(document => (
           <div className="document">
-            <h1>{el.titre}</h1>
-            {/* <img src={el.documentUrl} alt="tof"/> */}
+            <h1>{document.titre}</h1>
+            
+            <div>{affichage(document)}
+          </div>
           </div>
         )) 
       }

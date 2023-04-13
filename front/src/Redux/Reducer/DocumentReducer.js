@@ -13,10 +13,8 @@ export const createDocument = createAsyncThunk('Prof/Document',async(doc) => {
 export const getDocument = createAsyncThunk('Prof/Document', async()=> {
     return Axios
     .get('/Document/afficherDocs')
-    .then( res => { console.log(res.data)
-    return res.data})
-    .catch(error => { console.log(error.data.message)
-    return error.data.message})
+    .then( res => res.data)
+    .catch(error => error.data.message)
 })
 const DocumentSlice = createSlice({
     name : 'Document',
@@ -33,12 +31,10 @@ const DocumentSlice = createSlice({
         [createDocument.fulfilled] : (state,action) => {
             state.document = action.payload
             state.status = 'Succés'
-            console.log(action.payload)
         },
         [createDocument.rejected] : (state,action) => {
             state.erreur = action.payload
             state.status = 'Rejeté'
-            console.log(action.payload)
         },
         [createDocument.pending] : (state) => {
             state.status = 'En cours ...'
@@ -46,12 +42,10 @@ const DocumentSlice = createSlice({
         [getDocument.fulfilled] : (state,action) => {
             state.document = action.payload
             state.status = 'Succés'
-            console.log(action.payload)
         },
         [getDocument.rejected] : (state,action) => {
             state.erreur = action.payload
             state.status = 'Rejeté'
-            console.log(action.payload)
         },
         [getDocument.pending] : (state) => {
             state.status = 'En cours ...'

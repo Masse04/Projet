@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
         const timeElapsed = Date.now();
         const today = new Date(timeElapsed).toUTCString();
         const prefixe = today.split(',')[1].split(' ',5).join('_').split(':').join('_')
-        cb(null,`${prefixe}.${name}`)
+        cb(null,`${prefixe}_${name}`)
     }
 })
 

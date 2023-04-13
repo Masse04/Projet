@@ -26,5 +26,7 @@ app.use('/Admin', admin)
 app.use('/Parent', parent) */
 app.use('/User', user)
 app.use('/Document', doc)
-//app.use('/Images', express.static(path.join(__dirname, 'Images')));
+app.use('/Images', express.static('Images'))
+app.use('/Videos', express.static('Videos'))
+app.use('/Docs', express.static('Docs'))
 module.exports = conn
