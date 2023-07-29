@@ -3,23 +3,23 @@ import Axios from "../../AxiosServices/AxiosServices";
 
 
 
-export const createDocument = createAsyncThunk('Prof/Document',async(doc) => {
+export const createCours = createAsyncThunk('Prof/Cours',async(doc) => {
     return Axios
-    .post('/Document/Upload',doc)
+    .post('/Cours/upload',doc)
     .then(res => res.data)
     .catch(erreur => erreur.data.message)
 })
 
-export const getDocument = createAsyncThunk('Prof/Document', async()=> {
+export const getCours = createAsyncThunk('Prof/Cours', async()=> {
     return Axios
-    .get('/Document/afficherDocs')
+    .get('/Cours/afficherDocs')
     .then( res => res.data)
     .catch(error => error.data.message)
 })
-const DocumentSlice = createSlice({
-    name : 'Document',
+const CoursSlice = createSlice({
+    name : 'Cour',
     initialState : {
-        document : {},
+        cour : {},
         status : '',
         erreur : ''
     },
@@ -28,29 +28,29 @@ const DocumentSlice = createSlice({
         
     },
     extraReducers : {
-        [createDocument.fulfilled] : (state,action) => {
-            state.document = action.payload
+        [createCours.fulfilled] : (state,action) => {
+            state.cour = action.payload
             state.status = 'Succés'
         },
-        [createDocument.rejected] : (state,action) => {
+        [createCours.rejected] : (state,action) => {
             state.erreur = action.payload
             state.status = 'Rejeté'
         },
-        [createDocument.pending] : (state) => {
+        [createCours.pending] : (state) => {
             state.status = 'En cours ...'
         },
-        [getDocument.fulfilled] : (state,action) => {
-            state.document = action.payload
+        [getCours.fulfilled] : (state,action) => {
+            state.cour = action.payload
             state.status = 'Succés'
         },
-        [getDocument.rejected] : (state,action) => {
+        [getCours.rejected] : (state,action) => {
             state.erreur = action.payload
             state.status = 'Rejeté'
         },
-        [getDocument.pending] : (state) => {
+        [getCours.pending] : (state) => {
             state.status = 'En cours ...'
         }
     }
 })
 
-export default DocumentSlice.reducer
+export default CoursSlice.reducer

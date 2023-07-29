@@ -31,6 +31,7 @@ let Users = mongoose.Schema({
     sexe : String,
     cin : String,
     role : String,
+    classe : String,
     birthday : Date
 })
 module.exports = mongoose.model('Users',Users)

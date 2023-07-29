@@ -1,14 +1,14 @@
-const Document = require('../Models/Objets/Document')
+const Cours = require('../Models/Objets/Cours')
 
 
 
 
-exports.createDocument = async ( req , res ) => {
+exports.createCours = async ( req , res ) => {
     try {
-        const document = await new Document ({...req.body,userId : req.auth.userId,
+        const cours = await new Cours ({...req.body,userId : req.auth.userId,
             documentUrl : `${req.protocol}://${req.get('host')}/${req.file.destination}/${req.file.filename}`,
             genre : req.file.mimetype.split('/')[0]})
-        document.save()
+        cours.save()
             .then(() => res.status(201).json( {message : 'objet créé'} ) )
             .catch((error) => res.status(400).json( {error} ))
     } catch (error) {
@@ -17,9 +17,9 @@ exports.createDocument = async ( req , res ) => {
     
 }
 
-exports.getDocument = async ( req , res ) => {
+exports.getCours = async ( req , res ) => {
     try {
-        await Document.find({ userId : req.auth.userId})
+        await Cours.find({ userId : req.auth.userId})
             .then((documents) => res.status(200).json( {documents} ))
             .catch((error) => res.status(400).json( {error} ))
     } catch (error) {
@@ -27,10 +27,10 @@ exports.getDocument = async ( req , res ) => {
     }
 }
 
-exports.modifyDocument = async ( req , res ) => {
+exports.modifyCours = async ( req , res ) => {
     
 }
 
-exports.deleteDocument = async ( req , res ) => {
+exports.deleteCours = async ( req , res ) => {
 
 }

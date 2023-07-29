@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
 import {useDispatch} from 'react-redux'
-import { createDocument } from "../../Redux/Reducer/DocumentReducer";
+import { createCours } from "../../Redux/Reducer/CourReducer";
 import { useNavigate } from "react-router-dom";
+import './formDocument.css'
+
+// Cette page gere l'upload des Cours
 
 const FormDocument = () => {
     const [document,setDocument] = useState()
@@ -18,7 +21,7 @@ const FormDocument = () => {
         if (!formRef){
             return
         }
-        const result = await dispatch(createDocument(new FormData(formRef.current)))
+        const result = await dispatch(createCours(new FormData(formRef.current)))
         const nav = typeof result.payload.message
         if (nav === 'string'){
             navigate('/Prof/Cours')
@@ -27,24 +30,29 @@ const FormDocument = () => {
     return (
         <div className="formDocument">
             <form ref={formRef} onSubmit={onSubmit}>
-                <div className="form-floating">
-                    <label>Titre</label>
-                    <input type="text" className="form-control" name="titre" id="floatingInputGroup1" required onChange={onChange}/>
+                <div className="form">
+                    <label className="form-label"></label>
+                    <input type="text" placeholder='Titre' className="form-control" name="titre" id="floatingInputGroup1" required onChange={onChange}/>
                 </div>
-                <div className="form-floating">
-                    <label>Description</label>
-                    <input type="text" className="form-control" name="description" id="floatingInputGroup1" required onChange={onChange}/>
+                <div className="form">
+                    <label className="form-label"></label>
+                    <input type="text" placeholder="Description" className="form-control" name="description" id="floatingInputGroup1" required onChange={onChange}/>
                 </div>
+                <div className="classe">
+                    <label className="form-label">Classe : Uniquement pour les Etudiants</label>
+                    <select id="inputClasse" placeholder="classe" className="form-select" name="classe" onClick={onChange}>
+                        <option ></option>
+                        <option value='Seconde'>Seconde</option>
+                        <option value='Premiere'>Premiere</option>
+                        <option value='Terminale'>Terminale</option>
+                    </select>
+            </div>
                 <div className="form-floating">
-                    <label>Classe</label>
-                    <input type="text" className="form-control" name="classe" id="floatingInputGroup1" required onChange={onChange}/>
+                    <label className="form-label"></label>
+                    <input type="file" placeholder="Fichier" className="form-control" id="floatingInputGroup" name="document" required />
                 </div>
-                <div className="form-floating">
-                    <input type="file" className="form-control" id="floatingInputGroup" name="document" required />
-                    <label>Fichier</label>
-                </div>
-                <div className="col-12">
-                    <button type="submit" className="btn btn-primary" >LogIn</button>
+                <div className="button">
+                    <button type="submit" className="btn btn-warning">Upload</button>
                 </div>
             </form>
         </div>

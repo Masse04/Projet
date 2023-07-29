@@ -88,7 +88,7 @@ export class Document {
 }
 
 export class Users {
-    constructor(nom = '',prenom = '',username = '',password = '',email = '',telephone = '',adresse = '',sexe = '',cin = '',role = '',birthday = ''){
+    constructor(nom = '',prenom = '',username = '',password = '',email = '',telephone = '',adresse = '',sexe = '',cin = '',role = '',classe = '', birthday = ''){
         this.nom = nom 
         this.prenom = prenom
         this.username = username
@@ -99,6 +99,7 @@ export class Users {
         this.sexe = sexe
         this.cin = cin
         this.role = role
+        this.classe = classe
         this.birthday = birthday
     }
 }

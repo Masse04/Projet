@@ -24,10 +24,11 @@ const HeaderAdmin = () => {
     console.log(n)
   }
   return (
-    <div>
+    <div className="HeaderAdmin">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
                 <Link to = '/Admin/connexion'><button className="btn btn-outline-warning" type="submit">Accueil</button></Link>
+                <Link to = '/Admin/annonces'><button className="btn btn-outline-warning" type="submit">Annonces</button></Link>
                 <select className="btn btn-outline-warning" onClick={(e)=> {Redirect(e.target.value)}}>
                   <option>New User</option>
                   <option value= 'Admin'>Admin</option>

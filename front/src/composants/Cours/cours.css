@@ -1,0 +1,32 @@
+.documents{
+    display: grid;
+    grid-template-columns: repeat(3,20rem);
+    gap: 2rem;
+    grid-auto-rows: 20rem;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto ;
+    padding: 3rem;
+}
+
+.document{
+    margin: auto;
+    margin-top: 2rem;
+    
+}
+
+img , video , embed{
+    width: 20rem;
+    height: 15rem;
+}
+
+h1{
+    padding-top : 1rem;
+    margin-top: 2rem;
+}
+.ajouter{
+    margin-bottom: 2rem;
+    padding-bottom: 0rem;
+    padding-top: 0rem;
+    margin-top: 2rem;
+}
